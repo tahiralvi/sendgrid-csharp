@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SendGrid;
 using SendGrid.Extensions.DependencyInjection;
 using SendGrid.Helpers.Mail;
+using System;
+using System.Threading.Tasks;
 
 namespace Example
 {
@@ -21,12 +21,12 @@ namespace Example
                     .Build();
             var services = ConfigureServices(new ServiceCollection()).BuildServiceProvider();
             var client = services.GetRequiredService<ISendGridClient>();
-            var from = new EmailAddress(Configuration.GetValue("SendGrid:From", "test@example.com"), "Example User");
-            var to = new EmailAddress(Configuration.GetValue("SendGrid:To", "test@example.com"), "Example User");
+            var from = new EmailAddress(Configuration.GetValue("SendGrid:From", "sts@vcs.com.pk"), "STS User");
+            var to = new EmailAddress(Configuration.GetValue("SendGrid:To", "tahiralvi@vcs.com.pk"), "Tahir User");
             var msg = new SendGridMessage
             {
                 From = from,
-                Subject = "Sending with Twilio SendGrid is Fun"
+                Subject = "Sending a Test Email for STS"
             };
             msg.AddContent(MimeType.Text, "and easy to do anywhere, even with C#");
             msg.AddTo(to);
@@ -49,7 +49,8 @@ namespace Example
 
         private static IServiceCollection ConfigureServices(IServiceCollection services)
         {
-            services.AddSendGrid(options => { options.ApiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY") ?? Configuration["SendGrid:ApiKey"]; });
+            // services.AddSendGrid(options => { options.ApiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY") ?? Configuration["SendGrid:ApiKey"]; });
+            services.AddSendGrid(options => { options.ApiKey = "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"; });
 
             return services;
         }
