@@ -50,7 +50,7 @@ namespace Example
         private static IServiceCollection ConfigureServices(IServiceCollection services)
         {
             // services.AddSendGrid(options => { options.ApiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY") ?? Configuration["SendGrid:ApiKey"]; });
-            services.AddSendGrid(options => { options.ApiKey = "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"; });
+            services.AddSendGrid(options => { options.ApiKey = "###SampleAPIKey####"; });
 
             return services;
         }
